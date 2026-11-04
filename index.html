@@ -1,0 +1,1706 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="DriveX at CVPR 2027 brings together the computer vision, robotics, and autonomous-driving communities to discuss foundation models, VLA models, world models, 3D spatial intelligence, cooperative autonomy, and safe deployment.">
+  <meta name="keywords" content="DriveX, CVPR 2027, foundation models, autonomous driving, embodied AI, Physical AI, world models, VLA, 3D spatial intelligence">
+  <meta name="theme-color" content="#0b2239">
+  <meta property="og:title" content="DriveX@CVPR 2027 | Foundation Models for Autonomous Driving">
+  <meta property="og:description" content="The 9th DriveX workshop: a full-day CVPR 2027 workshop on foundation models for autonomous driving, with the eight-track DriveX Grand Challenge.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://drivex-workshop.github.io/cvpr2027/">
+  <title>DriveX@CVPR 2027 | Foundation Models for Autonomous Driving</title>
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <style>
+    :root {
+      --ink: #0b2239;
+      --ink-2: #173a59;
+      --blue: #174a7e;
+      --blue-bright: #2f83c5;
+      --cyan: #41c7c7;
+      --gold: #f2b84b;
+      --paper: #ffffff;
+      --wash: #f3f7fb;
+      --wash-2: #eaf2f8;
+      --text: #24384b;
+      --muted: #64778a;
+      --line: #d7e3ed;
+      --shadow: 0 18px 50px rgba(11, 34, 57, 0.10);
+      --radius: 22px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 82px;
+      background: var(--wash);
+    }
+
+    body {
+      color: var(--text);
+      background: var(--wash);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.65;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    a {
+      color: var(--blue);
+    }
+
+    a:hover {
+      color: var(--blue-bright);
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid var(--gold);
+      outline-offset: 3px;
+    }
+
+    .site-nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 40;
+      min-height: 68px;
+      background: rgba(7, 26, 44, 0.96);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+      box-shadow: 0 8px 26px rgba(4, 19, 32, 0.18);
+    }
+
+    .site-nav .navbar-brand,
+    .site-nav .navbar-menu {
+      min-height: 68px;
+    }
+
+    .site-nav .navbar-item,
+    .site-nav .navbar-link {
+      color: rgba(255, 255, 255, 0.83);
+      font-weight: 700;
+      font-size: 0.86rem;
+    }
+
+    .site-nav .navbar-item:hover,
+    .site-nav .navbar-item.is-active,
+    .site-nav .navbar-link:hover {
+      color: #ffffff;
+      background: rgba(65, 199, 199, 0.12);
+    }
+
+    .brand-lockup {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      color: var(--ink);
+      background: linear-gradient(135deg, var(--cyan), #b7f1e8);
+      box-shadow: 0 7px 22px rgba(65, 199, 199, 0.25);
+    }
+
+    .brand-logo-img {
+      display: block;
+      height: 22px;
+      width: auto;
+    }
+
+    .brand-copy strong,
+    .brand-copy span {
+      display: block;
+    }
+
+    .brand-copy strong {
+      color: #ffffff;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-copy span {
+      margin-top: 0.13rem;
+      color: rgba(255, 255, 255, 0.58);
+      font-size: 0.67rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .site-nav .navbar-burger {
+      color: #ffffff;
+      height: 68px;
+    }
+
+    .drivex-hero {
+      position: relative;
+      display: grid;
+      min-height: 780px;
+      padding: 126px 1.5rem 88px;
+      overflow: hidden;
+      color: #ffffff;
+      background:
+        radial-gradient(circle at 78% 18%, rgba(65, 199, 199, 0.30), transparent 31%),
+        radial-gradient(circle at 8% 84%, rgba(47, 131, 197, 0.30), transparent 33%),
+        linear-gradient(115deg, rgba(5, 24, 41, 0.97), rgba(12, 50, 79, 0.91)),
+        url("static/img/header.jpg") center / cover;
+    }
+
+    .drivex-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.34;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: linear-gradient(to bottom, black, transparent 90%);
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      width: min(1120px, 100%);
+      margin: auto;
+    }
+
+    .hero-logo-img {
+      display: block;
+      height: clamp(38px, 5.5vw, 58px);
+      width: auto;
+      margin-bottom: 1.5rem;
+      filter: drop-shadow(0 0 26px rgba(65, 199, 199, 0.35));
+    }
+
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      padding: 0.55rem 0.85rem;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #dffafa;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .hero-kicker .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 0 7px rgba(65, 199, 199, 0.12);
+    }
+
+    .hero-title {
+      max-width: 920px;
+      margin: 1.6rem 0 1rem;
+      color: #ffffff;
+      font-size: clamp(3.25rem, 7.8vw, 6.8rem);
+      font-weight: 850;
+      line-height: 0.94;
+      letter-spacing: -0.065em;
+      text-wrap: balance;
+    }
+
+    .hero-title span {
+      color: var(--cyan);
+    }
+
+    .hero-subtitle {
+      max-width: 780px;
+      margin: 0;
+      color: rgba(255, 255, 255, 0.77);
+      font-size: clamp(1.08rem, 2.1vw, 1.35rem);
+      line-height: 1.6;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin: 2rem 0 0;
+    }
+
+    .hero-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.72rem 0.9rem;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.09);
+      color: rgba(255, 255, 255, 0.92);
+      font-weight: 700;
+    }
+
+    .hero-meta i {
+      color: var(--cyan);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      margin-top: 2rem;
+    }
+
+    .hero-actions .button {
+      height: auto;
+      padding: 0.82rem 1.25rem;
+      border: 0;
+      border-radius: 999px;
+      font-weight: 800;
+    }
+
+    .hero-actions .primary-cta {
+      color: var(--ink);
+      background: var(--cyan);
+    }
+
+    .hero-actions .secondary-cta {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.10);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.20);
+    }
+
+    .hero-pillars {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.9rem;
+      margin-top: 3.4rem;
+    }
+
+    .hero-pillar {
+      min-height: 112px;
+      padding: 1.15rem;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 17px;
+      background: rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(12px);
+    }
+
+    .hero-pillar strong {
+      display: block;
+      margin-bottom: 0.25rem;
+      color: #ffffff;
+      font-size: 1rem;
+    }
+
+    .hero-pillar span {
+      color: rgba(255, 255, 255, 0.64);
+      font-size: 0.88rem;
+    }
+
+    .section-shell {
+      padding: 5.5rem 1.5rem;
+    }
+
+    .section-shell.is-white {
+      background: var(--paper);
+    }
+
+    .section-shell.is-tinted {
+      background: linear-gradient(180deg, var(--wash), #eef5fa);
+    }
+
+    .content-wrap {
+      width: min(1120px, 100%);
+      margin: 0 auto;
+    }
+
+    .section-heading {
+      display: grid;
+      grid-template-columns: minmax(0, 0.92fr) minmax(300px, 1.08fr);
+      gap: 3rem;
+      align-items: end;
+      margin-bottom: 2.5rem;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      margin-bottom: 0.7rem;
+      color: var(--blue);
+      font-size: 0.76rem;
+      font-weight: 850;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 3px;
+      border-radius: 3px;
+      background: var(--cyan);
+    }
+
+    .section-title {
+      margin: 0;
+      color: var(--ink);
+      font-size: clamp(2.2rem, 4.6vw, 3.6rem);
+      font-weight: 850;
+      line-height: 1.03;
+      letter-spacing: -0.045em;
+      text-wrap: balance;
+    }
+
+    .section-lead {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.03rem;
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr);
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .intro-copy {
+      font-size: 1.07rem;
+    }
+
+    .intro-copy p:first-child {
+      margin-top: 0;
+    }
+
+    .outcome-card {
+      padding: 1.5rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(145deg, #ffffff, #f0f7fb);
+      box-shadow: var(--shadow);
+    }
+
+    .outcome-card h3 {
+      margin: 0 0 0.9rem;
+      color: var(--ink);
+      font-size: 1.15rem;
+      font-weight: 800;
+    }
+
+    .outcome-card ul {
+      margin: 0;
+      padding-left: 1.15rem;
+    }
+
+    .outcome-card li + li {
+      margin-top: 0.55rem;
+    }
+
+    .topic-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.9rem;
+    }
+
+    .topic-card {
+      position: relative;
+      min-height: 122px;
+      padding: 1.2rem 1.2rem 1.2rem 1.3rem;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #ffffff;
+      box-shadow: 0 10px 30px rgba(11, 34, 57, 0.055);
+    }
+
+    .topic-card::after {
+      content: "";
+      position: absolute;
+      inset: auto -24px -30px auto;
+      width: 78px;
+      height: 78px;
+      border-radius: 50%;
+      background: rgba(65, 199, 199, 0.10);
+    }
+
+    .topic-card i {
+      color: var(--blue-bright);
+      font-size: 1.15rem;
+    }
+
+    .topic-card strong {
+      display: block;
+      margin-top: 0.65rem;
+      color: var(--ink);
+      line-height: 1.35;
+    }
+
+    .table-shell {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #ffffff;
+      box-shadow: var(--shadow);
+    }
+
+    .program-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .program-table th,
+    .program-table td {
+      padding: 0.9rem 1rem;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: middle;
+    }
+
+    .program-table th {
+      color: #ffffff;
+      background: var(--ink);
+      font-size: 0.73rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .program-table tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .program-table td:first-child {
+      width: 180px;
+      color: var(--blue);
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .program-table tbody tr:nth-child(even) {
+      background: #f7fafc;
+    }
+
+    .program-table tbody tr:hover {
+      background: #edf7f7;
+    }
+
+    .schedule-note {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      margin-top: 1rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .people-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .person-card {
+      position: relative;
+      display: block;
+      min-height: 238px;
+      padding: 1.25rem;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: #ffffff;
+      color: var(--text);
+      box-shadow: 0 12px 32px rgba(11, 34, 57, 0.065);
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+    }
+
+    .person-card::after {
+      content: "↗";
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      color: #9eb0c1;
+      font-weight: 800;
+    }
+
+    .person-card:hover {
+      color: var(--text);
+      transform: translateY(-4px);
+      border-color: rgba(47, 131, 197, 0.45);
+      box-shadow: 0 18px 42px rgba(11, 34, 57, 0.12);
+    }
+
+    .person-avatar {
+      position: relative;
+      display: grid;
+      place-items: center;
+      width: 88px;
+      height: 88px;
+      margin-bottom: 1rem;
+      overflow: hidden;
+      border-radius: 24px;
+      color: var(--ink);
+      background: linear-gradient(135deg, #c8eef0, #dce8f5);
+      font-size: 1.3rem;
+      font-weight: 900;
+      letter-spacing: 0.03em;
+    }
+
+    .person-avatar img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      background: #eef3f7;
+    }
+
+    .person-name {
+      margin: 0;
+      color: var(--ink);
+      font-size: 1.05rem;
+      font-weight: 850;
+      line-height: 1.25;
+    }
+
+    .person-affiliation {
+      margin: 0.4rem 0 0;
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.4;
+    }
+
+    .paper-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(330px, 0.82fr);
+      gap: 1.4rem;
+      align-items: start;
+    }
+
+    .paper-card,
+    .dates-card,
+    .challenge-card {
+      padding: 1.6rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #ffffff;
+      box-shadow: var(--shadow);
+    }
+
+    .track-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.42rem 0.66rem;
+      border-radius: 999px;
+      color: #0a5c5c;
+      background: #dff7f4;
+      font-size: 0.75rem;
+      font-weight: 850;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    .paper-card h3,
+    .dates-card h3,
+    .challenge-card h3 {
+      margin: 1rem 0 0.7rem;
+      color: var(--ink);
+      font-size: 1.45rem;
+      font-weight: 850;
+      line-height: 1.2;
+    }
+
+    .paper-card ul {
+      margin: 1.15rem 0;
+      padding-left: 1.2rem;
+    }
+
+    .paper-card li + li {
+      margin-top: 0.55rem;
+    }
+
+    .coming-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.72rem 0.9rem;
+      border-radius: 12px;
+      color: var(--muted);
+      background: var(--wash-2);
+      font-weight: 800;
+      cursor: not-allowed;
+    }
+
+    .date-list {
+      display: grid;
+      gap: 0;
+      margin: 0;
+    }
+
+    .date-row {
+      display: grid;
+      grid-template-columns: 118px 1fr;
+      gap: 0.7rem;
+      padding: 0.72rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .date-row:last-child {
+      border-bottom: 0;
+    }
+
+    .date-row dt {
+      color: var(--blue);
+      font-weight: 850;
+    }
+
+    .date-row dd {
+      margin: 0;
+      color: var(--text);
+    }
+
+    .award-banner {
+      position: relative;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 1.3rem;
+      align-items: center;
+      padding: 2rem;
+      overflow: hidden;
+      border-radius: 26px;
+      color: #ffffff;
+      background:
+        radial-gradient(circle at 88% 20%, rgba(242, 184, 75, 0.26), transparent 34%),
+        linear-gradient(125deg, var(--ink), #174a7e);
+      box-shadow: var(--shadow);
+    }
+
+    .award-icon {
+      display: grid;
+      place-items: center;
+      width: 76px;
+      height: 76px;
+      border-radius: 22px;
+      color: var(--ink);
+      background: var(--gold);
+      font-size: 1.9rem;
+    }
+
+    .award-banner h3 {
+      margin: 0;
+      color: #ffffff;
+      font-size: 1.65rem;
+      font-weight: 850;
+    }
+
+    .award-banner p {
+      margin: 0.3rem 0 0;
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    .award-pool {
+      color: var(--gold);
+      font-size: clamp(1.45rem, 3vw, 2.1rem);
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .challenge-card {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: center;
+      background: linear-gradient(135deg, #ffffff, #eaf7f7);
+    }
+
+    .challenge-card h3 {
+      margin-top: 0;
+    }
+
+    .coming-soon {
+      padding: 0.7rem 0.95rem;
+      border-radius: 999px;
+      color: #0a5c5c;
+      background: #d6f4ef;
+      font-weight: 850;
+      white-space: nowrap;
+    }
+
+    .leadership-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .leader-card {
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: 1rem;
+      align-items: center;
+      min-height: 124px;
+      padding: 1.1rem;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #ffffff;
+      color: var(--text);
+      box-shadow: 0 10px 28px rgba(11, 34, 57, 0.055);
+      transition: transform 180ms ease, border-color 180ms ease;
+    }
+
+    .leader-card:hover {
+      color: var(--text);
+      transform: translateY(-3px);
+      border-color: rgba(47, 131, 197, 0.4);
+    }
+
+    .leader-card .person-avatar {
+      width: 72px;
+      height: 72px;
+      margin: 0;
+      border-radius: 19px;
+      font-size: 1.05rem;
+    }
+
+    .leader-role {
+      margin-top: 0.35rem;
+      color: var(--blue);
+      font-size: 0.78rem;
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .edition-grid {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      gap: 0.65rem;
+    }
+
+    .edition-card {
+      display: grid;
+      place-items: center;
+      min-height: 88px;
+      padding: 0.8rem;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: #ffffff;
+      text-align: center;
+      font-size: 0.85rem;
+      font-weight: 850;
+      line-height: 1.3;
+      box-shadow: 0 8px 22px rgba(11, 34, 57, 0.045);
+    }
+
+    .site-footer {
+      padding: 3rem 1.5rem;
+      color: rgba(255, 255, 255, 0.72);
+      background: var(--ink);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 2rem;
+      width: min(1120px, 100%);
+      margin: 0 auto;
+    }
+
+    .footer-inner strong {
+      display: block;
+      margin-bottom: 0.35rem;
+      color: #ffffff;
+    }
+
+    .footer-inner a {
+      color: var(--cyan);
+    }
+
+    .footer-meta {
+      text-align: right;
+    }
+
+    @media (max-width: 1023px) {
+      .site-nav .navbar-menu {
+        padding: 0.45rem;
+        background: rgba(7, 26, 44, 0.99);
+      }
+
+      .hero-pillars,
+      .topic-grid,
+      .leadership-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .people-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .edition-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 768px) {
+      .drivex-hero {
+        min-height: auto;
+        padding-top: 112px;
+      }
+
+      .hero-title {
+        font-size: clamp(3rem, 16vw, 4.6rem);
+      }
+
+      .hero-pillars,
+      .section-heading,
+      .intro-grid,
+      .paper-layout,
+      .award-banner,
+      .challenge-card {
+        grid-template-columns: 1fr;
+      }
+
+      .section-heading {
+        gap: 1.1rem;
+      }
+
+      .topic-grid,
+      .leadership-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .people-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .person-card {
+        min-height: 218px;
+      }
+
+      .award-pool {
+        white-space: normal;
+      }
+
+      .footer-inner {
+        display: block;
+      }
+
+      .footer-meta {
+        margin-top: 1.2rem;
+        text-align: left;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .section-shell {
+        padding: 4.2rem 1rem;
+      }
+
+      .hero-meta,
+      .hero-actions {
+        display: grid;
+      }
+
+      .hero-actions .button {
+        justify-content: center;
+      }
+
+      .people-grid,
+      .edition-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .person-card {
+        display: grid;
+        grid-template-columns: 72px 1fr;
+        gap: 1rem;
+        align-items: center;
+        min-height: auto;
+      }
+
+      .person-avatar {
+        width: 72px;
+        height: 72px;
+        margin: 0;
+        border-radius: 18px;
+      }
+
+      .person-card::after {
+        display: none;
+      }
+
+      .program-table th,
+      .program-table td {
+        padding: 0.75rem 0.7rem;
+      }
+
+      .program-table td:first-child {
+        width: 114px;
+        white-space: normal;
+      }
+
+      .date-row {
+        grid-template-columns: 1fr;
+        gap: 0.1rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+      }
+    }
+
+    /* DriveX@CVPR 2027 additions */
+    .invited-tag {
+      display: inline-block;
+      margin-top: 0.4rem;
+      padding: 0.12rem 0.55rem;
+      border-radius: 999px;
+      background: var(--wash-2);
+      color: var(--blue);
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .program-table tr.row-keynote td { background: #e3f2fb; }
+    .program-table tr.row-panel td { background: #f6e5ef; }
+    .program-table tr.row-social td { background: #fbf8dc; }
+    .program-table tr.row-paper td { background: #dff3ec; }
+    .program-table tr.row-challenge td { background: #fbeed6; }
+    .program-table tr.row-open td { background: #f1f2f3; }
+
+    .track-table td:first-child { width: 110px; }
+    .track-table td:last-child { white-space: nowrap; }
+
+    .paper-card .track-label + h3 { margin-top: 0.6rem; }
+    .paper-card ul + .track-label { margin-top: 1.1rem; }
+    .dates-card .date-list + h3 { margin-top: 1.2rem; }
+
+    #paper-track .award-banner,
+    .challenge-details,
+    .pc-block { margin-top: 2rem; }
+
+    .pc-block h3 {
+      margin-bottom: 1rem;
+      color: var(--ink);
+      font-size: 1.25rem;
+      font-weight: 800;
+    }
+
+    .pc-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 0.6rem 1.2rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .pc-list li {
+      display: flex;
+      flex-direction: column;
+      padding: 0.7rem 0.9rem;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--paper);
+    }
+
+    .pc-list a { color: var(--ink); font-weight: 700; }
+    .pc-list span { color: var(--muted); font-size: 0.85rem; }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar site-nav" role="navigation" aria-label="Main navigation">
+    <div class="container is-max-widescreen">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="#top" aria-label="DriveX CVPR 2027 home">
+          <span class="brand-lockup">
+            <img class="brand-logo-img" src="static/img/drivex_logo_white.png" alt="DriveX">
+            <span class="brand-copy">
+              <strong>@ CVPR 2027</strong>
+              <span>Foundation models × autonomous driving</span>
+            </span>
+          </span>
+        </a>
+        <button class="navbar-burger" aria-label="Open navigation menu" aria-expanded="false" data-target="main-menu">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </button>
+      </div>
+
+      <div id="main-menu" class="navbar-menu">
+        <div class="navbar-end">
+          <a class="navbar-item" href="#introduction">Introduction</a>
+          <a class="navbar-item" href="#topics">Topics</a>
+          <a class="navbar-item" href="#schedule">Schedule</a>
+          <a class="navbar-item" href="#speakers">Speakers</a>
+          <a class="navbar-item" href="#paper-track">Papers</a>
+          <a class="navbar-item" href="#challenges">Challenge</a>
+          <a class="navbar-item" href="#organizers">Organizers</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <header id="top" class="drivex-hero">
+    <div class="hero-inner">
+      <img class="hero-logo-img" src="static/img/drivex_logo_white.png" alt="DriveX">
+      <div class="hero-kicker">
+        <span class="dot" aria-hidden="true"></span>
+        9th DriveX Workshop · IEEE/CVF CVPR 2027
+      </div>
+      <h1 class="hero-title">Foundation Models for <span>Autonomous Driving</span></h1>
+      <p class="hero-subtitle">
+        A full-day CVPR forum on vision-language-action models, world models, 3D/4D spatial intelligence, cooperative autonomy, and safe deployment, with keynotes, panels, papers, live demos, and the eight-track DriveX Grand Challenge.
+      </p>
+
+      <div class="hero-meta" aria-label="Workshop details">
+        <span><i class="fas fa-calendar-alt" aria-hidden="true"></i>June 20 or June 21, 2027</span>
+        <span><i class="fas fa-map-marker-alt" aria-hidden="true"></i>Seattle, USA</span>
+        <span><i class="fas fa-clock" aria-hidden="true"></i>Full day · In person</span>
+      </div>
+
+      <div class="hero-actions">
+        <a class="button primary-cta" href="#paper-track"><i class="fas fa-file-alt" aria-hidden="true"></i>&nbsp; Call for Papers</a>
+        <a class="button secondary-cta" href="#challenges"><i class="fas fa-flag-checkered" aria-hidden="true"></i>&nbsp; Grand Challenge</a>
+        <a class="button secondary-cta" href="#speakers"><i class="fas fa-microphone" aria-hidden="true"></i>&nbsp; Invited Speakers</a>
+      </div>
+
+      <div class="hero-pillars" aria-label="Workshop focus areas">
+        <div class="hero-pillar">
+          <strong>VLA Models and World Models</strong>
+          <span>Reasoning, generative simulation, and closed-loop planning for driving.</span>
+        </div>
+        <div class="hero-pillar">
+          <strong>Spatial and Cooperative Intelligence</strong>
+          <span>3D/4D scene understanding and multi-agent V2X autonomy.</span>
+        </div>
+        <div class="hero-pillar">
+          <strong>Trustworthy Deployment</strong>
+          <span>Safety, robustness, efficiency, and open benchmarks.</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="introduction" class="section-shell is-white">
+      <div class="content-wrap">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">Workshop vision</div>
+            <h2 class="section-title">Grounded, verifiable, and deployable embodied AI</h2>
+          </div>
+          <p class="section-lead">
+            DriveX@CVPR 2027 brings together the computer vision, robotics, and autonomous-driving communities to discuss foundation models for autonomous driving.
+          </p>
+        </div>
+
+        <div class="intro-grid">
+          <div class="intro-copy">
+            <p>
+              Autonomous driving is a large-scale embodied-AI problem: an agent must perceive, predict, reason, and act in uncertain 3D environments under strict safety and real-time constraints. Foundation models are shifting the field from isolated perception tasks toward unified systems that connect vision, language, geometry, time, and action. Driving Vision-Language-Action (VLA) models now couple reasoning with trajectory generation, generative world models have matured into action-conditioned simulators for closed-loop evaluation, and cooperative autonomy is moving toward shared world models.
+            </p>
+            <p>
+              The 9th edition of the DriveX series asks how learned representations can stay spatially and temporally grounded, how world models should support closed-loop planning and evaluation, how vehicles and infrastructure can share complementary evidence, and how reasoning, uncertainty, and efficiency make these systems trustworthy and deployable.
+            </p>
+            <p>
+              The full-day program features keynotes from academia and industry, two interactive panels with all invited speakers, archival and non-archival paper tracks, poster sessions with live demos presented by our sponsors, and the eight-track DriveX Grand Challenge. DriveX is part of the <a href="https://drivex.network" target="_blank" rel="noopener noreferrer">DriveX ecosystem</a>.
+            </p>
+          </div>
+          <aside class="outcome-card" aria-label="Workshop objectives">
+            <h3>Open questions for 2027</h3>
+            <ul>
+              <li>Do driving VLAs need explicit language reasoning?</li>
+              <li>Can generative world models replace log replay for safety validation?</li>
+              <li>How should vehicles and infrastructure share learned representations?</li>
+              <li>How do we make foundation models efficient and verifiable on the vehicle?</li>
+              <li>Which benchmarks reveal where current models fail?</li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="topics" class="section-shell is-tinted">
+      <div class="content-wrap">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">Call for participation</div>
+            <h2 class="section-title">Topics of interest</h2>
+          </div>
+          <p class="section-lead">
+            We welcome research spanning algorithms, systems, datasets, evaluation, and real-world deployment at the intersection of foundation models and autonomous driving.
+          </p>
+        </div>
+
+        <div class="topic-grid">
+          <div class="topic-card"><i class="fas fa-language" aria-hidden="true"></i><strong>Vision-Language-Action models and reasoning for driving</strong></div>
+          <div class="topic-card"><i class="fas fa-globe" aria-hidden="true"></i><strong>World models and generative closed-loop simulation</strong></div>
+          <div class="topic-card"><i class="fas fa-cubes" aria-hidden="true"></i><strong>3D/4D spatial intelligence and reconstruction</strong></div>
+          <div class="topic-card"><i class="fas fa-broadcast-tower" aria-hidden="true"></i><strong>Multi-agent and V2X cooperative autonomy</strong></div>
+          <div class="topic-card"><i class="fas fa-random" aria-hidden="true"></i><strong>Long-tail reasoning, robustness, and uncertainty</strong></div>
+          <div class="topic-card"><i class="fas fa-shield-alt" aria-hidden="true"></i><strong>Safety, verification, and closed-loop evaluation</strong></div>
+          <div class="topic-card"><i class="fas fa-microchip" aria-hidden="true"></i><strong>Efficient on-vehicle deployment of foundation models</strong></div>
+          <div class="topic-card"><i class="fas fa-sync-alt" aria-hidden="true"></i><strong>Sim-to-real transfer and synthetic data</strong></div>
+          <div class="topic-card"><i class="fas fa-chart-line" aria-hidden="true"></i><strong>Datasets, benchmarks, and agentic data curation</strong></div>
+          <div class="topic-card"><i class="fas fa-comments" aria-hidden="true"></i><strong>Language-conditioned human–AV interaction</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="schedule" class="section-shell is-white">
+      <div class="content-wrap">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">Full-day program</div>
+            <h2 class="section-title">Tentative schedule</h2>
+          </div>
+          <p class="section-lead">
+            Sixteen keynotes, two interactive panels, six paper orals, two poster sessions with live demos, and challenge winner talks. The final speaker order and room will be announced once CVPR confirms the workshop date.
+          </p>
+        </div>
+
+        <div class="table-shell">
+          <table class="program-table">
+            <caption class="sr-only">Tentative full-day program for the DriveX workshop at CVPR 2027</caption>
+            <thead>
+              <tr><th>Time</th><th>Program</th></tr>
+            </thead>
+            <tbody>
+              <tr class="row-open"><td>08:00–08:10</td><td>Opening and DriveX ecosystem</td></tr>
+              <tr class="row-keynote"><td>08:10–09:30</td><td>Keynotes I (4 talks)</td></tr>
+              <tr class="row-paper"><td>09:30–10:00</td><td>Paper orals I (3 talks)</td></tr>
+              <tr class="row-social"><td>10:00–10:20</td><td>Coffee break and posters I</td></tr>
+              <tr class="row-keynote"><td>10:20–11:40</td><td>Keynotes II (4 talks)</td></tr>
+              <tr class="row-panel"><td>11:40–12:00</td><td>Panel I: VLA and world models</td></tr>
+              <tr class="row-social"><td>12:00–13:00</td><td>Lunch break</td></tr>
+              <tr class="row-keynote"><td>13:00–14:20</td><td>Keynotes III (4 talks)</td></tr>
+              <tr class="row-challenge"><td>14:20–15:00</td><td>Challenge winner talks</td></tr>
+              <tr class="row-social"><td>15:00–15:30</td><td>Coffee, posters II, and sponsor live demos</td></tr>
+              <tr class="row-keynote"><td>15:30–16:50</td><td>Keynotes IV (4 talks)</td></tr>
+              <tr class="row-panel"><td>16:50–17:20</td><td>Panel II: From benchmarks to safe deployment</td></tr>
+              <tr class="row-paper"><td>17:20–17:50</td><td>Paper orals II (3 talks)</td></tr>
+              <tr class="row-open"><td>17:50–18:00</td><td>Awards and closing remarks</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="schedule-note"><i class="fas fa-info-circle" aria-hidden="true"></i><span>Panels are interactive: the audience votes on contested propositions before each panel, and moderators take questions from the room and an online queue. All talks are recorded via the CVPR Zoom room and, with the speakers' permission, published on <a href="https://www.youtube.com/@MobilityUCLA" target="_blank" rel="noopener noreferrer">YouTube</a>. The schedule is tentative and subject to the final CVPR program.</span></p>
+      </div>
+    </section>
+
+    <section id="speakers" class="section-shell is-tinted">
+      <div class="content-wrap">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">Academic and industry perspectives</div>
+            <h2 class="section-title">Invited speakers</h2>
+          </div>
+          <p class="section-lead">
+            We have invited leaders in 3D vision, world models, robot learning, foundation models, benchmarks, and production autonomy. The final speaker lineup will be announced on this page.
+          </p>
+        </div>
+
+        <div class="people-grid">
+          <a class="person-card" href="https://www.cvlibs.net/" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>AG</span><img src="https://scholar.googleusercontent.com/citations?view_op=medium_photo&amp;user=SrVnrPcAAAAJ&amp;citpid=7" alt="Portrait of Andreas Geiger" loading="lazy"></div>
+            <div><p class="person-name">Andreas Geiger</p><p class="person-affiliation">University of Tübingen</p><span class="invited-tag">Invited speaker</span></div>
+          </a>
+          <a class="person-card" href="https://www.3dunderstanding.org/team.html" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>AD</span><img src="static/img/angela_dai.jpg" alt="Portrait of Angela Dai" loading="lazy"></div>
+            <div><p class="person-name">Angela Dai</p><p class="person-affiliation">Technical University of Munich</p><span class="invited-tag">Invited speaker</span></div>
+          </a>
+          <a class="person-card" href="https://cvg.cit.tum.de/members/cremers" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>DC</span><img src="static/img/daniel_cremers.png" alt="Portrait of Daniel Cremers" loading="lazy"></div>
+            <div><p class="person-name">Daniel Cremers</p><p class="person-affiliation">Technical University of Munich</p><span class="invited-tag">Invited speaker</span></div>
+          </a>
+          <a class="person-card" href="https://research.nvidia.com/labs/dvl/author/laura-leal-taixe/" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>LL</span><img src="static/img/laura_leal_taixe.jpg" alt="Portrait of Laura Leal-Taixé" loading="lazy"></div>
+            <div><p class="person-name">Laura Leal-Taixé</p><p class="person-affiliation">NVIDIA</p><span class="invited-tag">Invited speaker</span></div>
+          </a>
+          <a class="person-card" href="https://cseweb.ucsd.edu/~mkchandraker/" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>MC</span><img src="http://fg2023.ieee-biometrics.org/assets/images/organizers/cropped-manmohan-chandraker.jpeg" alt="Portrait of Manmohan Chandraker" loading="lazy"></div>
+            <div><p class="person-name">Manmohan Chandraker</p><p class="person-affiliation">UC San Diego</p><span class="invited-tag">Invited speaker</span></div>
+          </a>
+          <a class="person-card" href="https://pages.cs.wisc.edu/~sharonli/" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>SL</span><img src="https://pages.cs.wisc.edu/~sharonli/images/yixuanli-2019.JPG" alt="Portrait of Sharon Li" loading="lazy"></div>
+            <div><p class="person-name">Sharon Li</p><p class="person-affiliation">University of Wisconsin–Madison</p><span class="invited-tag">Invited speaker</span></div>
+          </a>
+          <a class="person-card" href="https://boleizhou.github.io/" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>BZ</span><img src="https://boleizhou.github.io/assets/img/prof_pic2.jpg" alt="Portrait of Bolei Zhou" loading="lazy"></div>
+            <div><p class="person-name">Bolei Zhou</p><p class="person-affiliation">UCLA</p><span class="invited-tag">Invited speaker</span></div>
+          </a>
+          <a class="person-card" href="https://www.utn.de/person/prof-dr-wolfram-burgard-2/" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>WB</span><img src="static/img/wolfram_burgard.jpg" alt="Portrait of Wolfram Burgard" loading="lazy"></div>
+            <div><p class="person-name">Wolfram Burgard</p><p class="person-affiliation">University of Technology Nuremberg</p><span class="invited-tag">Invited speaker</span></div>
+          </a>
+          <a class="person-card" href="https://scholar.google.com/citations?hl=en&amp;user=aM3i_9oAAAAJ" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>NR</span><img src="static/images/nicholas_roy.jpeg" alt="Portrait of Nicholas Roy" loading="lazy"></div>
+            <div><p class="person-name">Nicholas Roy</p><p class="person-affiliation">MIT and Zoox</p><span class="invited-tag">Invited speaker</span></div>
+          </a>
+          <a class="person-card" href="https://research.nvidia.com/person/marco-pavone" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>MP</span><img src="static/img/marco_pavone.png" alt="Portrait of Marco Pavone" loading="lazy"></div>
+            <div><p class="person-name">Marco Pavone</p><p class="person-affiliation">Stanford University and NVIDIA</p><span class="invited-tag">Invited speaker</span></div>
+          </a>
+          <a class="person-card" href="https://it-caesar.de/" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>HC</span><img src="static/img/holger_caesar.jpg" alt="Portrait of Holger Caesar" loading="lazy"></div>
+            <div><p class="person-name">Holger Caesar</p><p class="person-affiliation">TU Delft</p><span class="invited-tag">Invited speaker</span></div>
+          </a>
+          <a class="person-card" href="https://mobility-lab.seas.ucla.edu/about/" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>JM</span><img src="static/img/jiaqi_ma.jpg" alt="Portrait of Jiaqi Ma" loading="lazy"></div>
+            <div><p class="person-name">Jiaqi Ma</p><p class="person-affiliation">UCLA</p><span class="invited-tag">Invited speaker</span></div>
+          </a>
+          <a class="person-card" href="https://jamie.shotton.org/" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>JS</span><img src="https://wayve.ai/wp-content/uploads/2024/01/Jamie-Shotton-Wavye_sq2024.jpg" alt="Portrait of Jamie Shotton" loading="lazy"></div>
+            <div><p class="person-name">Jamie Shotton</p><p class="person-affiliation">Wayve</p><span class="invited-tag">Invited speaker</span></div>
+          </a>
+          <a class="person-card" href="https://scholar.google.com/citations?hl=en&amp;user=6POeyBoAAAAJ" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>MT</span><img src="static/img/mingxing_tan.png" alt="Portrait of Mingxing Tan" loading="lazy"></div>
+            <div><p class="person-name">Mingxing Tan</p><p class="person-affiliation">Waymo</p><span class="invited-tag">Invited speaker</span></div>
+          </a>
+          <a class="person-card" href="https://www.linkedin.com/in/eashokkumar" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>AE</span><img src="https://wdfm-ad.github.io/assets/img/headshots/Ashok-1400.webp" alt="Portrait of Ashok Elluswamy" loading="lazy"></div>
+            <div><p class="person-name">Ashok Elluswamy</p><p class="person-affiliation">Tesla</p><span class="invited-tag">Invited speaker</span></div>
+          </a>
+          <a class="person-card" href="https://motional.com/phil-michel" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>PM</span><img src="https://motional.com/sites/default/files/2026-04/Phil%20Michel.jpeg" alt="Portrait of Phil Michel" loading="lazy"></div>
+            <div><p class="person-name">Phil Michel</p><p class="person-affiliation">Motional</p><span class="invited-tag">Invited speaker</span></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="paper-track" class="section-shell is-white">
+      <div class="content-wrap">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">Call for papers</div>
+            <h2 class="section-title">Archival and non-archival paper tracks</h2>
+          </div>
+          <p class="section-lead">
+            Submit full papers to the CVPR 2027 Workshop proceedings, or share extended abstracts and recently published work in the non-archival track. Reviewing on OpenReview is double-blind with at least three reviews per paper.
+          </p>
+        </div>
+
+        <div class="paper-layout">
+          <article class="paper-card">
+            <span class="track-label"><i class="fas fa-book" aria-hidden="true"></i>Archival</span>
+            <h3>Full papers</h3>
+            <ul>
+              <li>CVPR 2027 paper style, up to 8 pages excluding references</li>
+              <li>Published in the CVPR 2027 Workshop proceedings (IEEE/CVF)</li>
+              <li>All authors need complete OpenReview profiles</li>
+            </ul>
+            <span class="track-label"><i class="fas fa-unlock-alt" aria-hidden="true"></i>Non-archival</span>
+            <h3>Extended abstracts</h3>
+            <ul>
+              <li>Up to 4 pages, or recently published work</li>
+              <li>Posted on the workshop website, not in the proceedings</li>
+            </ul>
+            <p>All accepted papers are presented as posters; six papers are selected for oral presentations. Authors of accepted papers will be invited to extend their work to journal length and submit it to a special issue organized by the DriveX organizers.</p>
+            <span class="coming-button" aria-disabled="true"><i class="fas fa-hourglass-half" aria-hidden="true"></i>OpenReview link and detailed instructions coming soon</span>
+          </article>
+
+          <aside class="dates-card" aria-label="Paper track dates">
+            <span class="track-label"><i class="fas fa-calendar-check" aria-hidden="true"></i>Important dates (AoE)</span>
+            <h3>Archival track</h3>
+            <dl class="date-list">
+              <div class="date-row"><dt>Jan. 15</dt><dd>Submission opens</dd></div>
+              <div class="date-row"><dt>Mar. 1</dt><dd>Submission deadline</dd></div>
+              <div class="date-row"><dt>Mar. 19</dt><dd>Author notification</dd></div>
+              <div class="date-row"><dt>Mar. 29</dt><dd>Author metadata (CVPR)</dd></div>
+              <div class="date-row"><dt>Apr. 23</dt><dd>Camera-ready (CVPR)</dd></div>
+            </dl>
+            <h3>Non-archival track</h3>
+            <dl class="date-list">
+              <div class="date-row"><dt>Apr. 16</dt><dd>Submission deadline</dd></div>
+              <div class="date-row"><dt>May 7</dt><dd>Author notification</dd></div>
+              <div class="date-row"><dt>May 21</dt><dd>Final version</dd></div>
+              <div class="date-row"><dt>Jun. 20/21</dt><dd>Workshop at CVPR 2027</dd></div>
+            </dl>
+          </aside>
+        </div>
+
+        <div class="award-banner">
+          <div class="award-icon"><i class="fas fa-trophy" aria-hidden="true"></i></div>
+          <div>
+            <h3>Three paper awards</h3>
+            <p>Best Paper, Best Paper Runner-Up, and Best Industry Paper, nominated by the area chairs and presented in the closing session.</p>
+          </div>
+        </div>
+
+        <div class="pc-block">
+          <h3>Program committee</h3>
+          <ul class="pc-list">
+            <li><a href="https://hangqiu.github.io/" target="_blank" rel="noopener noreferrer">Hang Qiu</a><span>UC Riverside</span></li>
+            <li><a href="https://www-lmd.ist.hokudai.ac.jp/member/guang-li/" target="_blank" rel="noopener noreferrer">Guang Li</a><span>Hokkaido University</span></li>
+            <li><a href="https://vveicao.github.io/" target="_blank" rel="noopener noreferrer">Wei Cao</a><span>UIUC</span></li>
+            <li><a href="https://www.ivi.fraunhofer.de/" target="_blank" rel="noopener noreferrer">Markus Gross</a><span>Fraunhofer IVI and TUM</span></li>
+            <li><a href="https://ziranw.github.io/" target="_blank" rel="noopener noreferrer">Ziran Wang</a><span>Purdue University</span></li>
+            <li><a href="https://jiachenli94.github.io/" target="_blank" rel="noopener noreferrer">Jiachen Li</a><span>UC Riverside</span></li>
+            <li><a href="https://vztu.github.io/" target="_blank" rel="noopener noreferrer">Zhengzhong Tu</a><span>Texas A&amp;M University</span></li>
+            <li><a href="https://www.xiangbogao.com/" target="_blank" rel="noopener noreferrer">Xiangbo Gao</a><span>Texas A&amp;M University</span></li>
+            <li><a href="https://www.linkedin.com/in/shivaaher/" target="_blank" rel="noopener noreferrer">Shiva Aher</a><span>Ford Motor Company</span></li>
+            <li><a href="https://intra.ece.ucr.edu/~barth/faculty_profile.htm" target="_blank" rel="noopener noreferrer">Matthew Barth</a><span>UC Riverside</span></li>
+            <li><a href="https://sites.google.com/site/yitingchen0524/" target="_blank" rel="noopener noreferrer">Yi-Ting Chen</a><span>NYCU</span></li>
+            <li><a href="https://federicotombari.github.io/" target="_blank" rel="noopener noreferrer">Federico Tombari</a><span>Google and TUM</span></li>
+            <li><a href="https://www.linkedin.com/in/marcunzueta" target="_blank" rel="noopener noreferrer">Marc Unzueta</a><span>Cruise</span></li>
+            <li><a href="https://zhenzhel.github.io/" target="_blank" rel="noopener noreferrer">Zhenzhen Liu</a><span>Cornell University</span></li>
+            <li><a href="https://jinsuyoo.info/" target="_blank" rel="noopener noreferrer">Jinsu Yoo</a><span>Ohio State University</span></li>
+            <li><a href="https://www.sydney.edu.au/engineering/about/our-people/academic-staff/mao-shan.html" target="_blank" rel="noopener noreferrer">Mao Shan</a><span>University of Sydney</span></li>
+            <li><a href="https://aroitberg.github.io/" target="_blank" rel="noopener noreferrer">Alina Roitberg</a><span>University of Münster</span></li>
+            <li><a href="https://profiles.ucr.edu/app/home/profile/guoyuanw" target="_blank" rel="noopener noreferrer">Guoyuan Wu</a><span>UC Riverside</span></li>
+            <li><a href="https://www.linkedin.com/in/arpita-v-0a14a422/" target="_blank" rel="noopener noreferrer">Arpita Vats</a><span>LinkedIn</span></li>
+            <li><a href="https://yhccchen.github.io/personal-website/" target="_blank" rel="noopener noreferrer">Yu-Hsiang Chen</a><span>NYCU</span></li>
+            <li><a href="https://minhungchen.netlify.app/" target="_blank" rel="noopener noreferrer">Min-Hung Chen</a><span>NVIDIA</span></li>
+            <li><a href="https://www.linkedin.com/in/anant-subramanian/" target="_blank" rel="noopener noreferrer">Anant Subramanian</a><span>Waymo</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="challenges" class="section-shell is-tinted">
+      <div class="content-wrap">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">Benchmark program</div>
+            <h2 class="section-title">DriveX Grand Challenge: eight tracks</h2>
+          </div>
+          <p class="section-lead">
+            The tracks cover the stack from cooperative perception to reasoning, simulation, and closed-loop planning. Each track runs on a public Codabench leaderboard with a validation and a held-out test phase.
+          </p>
+        </div>
+
+        <div class="table-shell">
+          <table class="program-table track-table">
+            <caption class="sr-only">DriveX Grand Challenge tracks at CVPR 2027</caption>
+            <thead>
+              <tr><th>Track</th><th>Dataset</th><th>Task</th><th>Main metric</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Track 1</td><td><a href="https://tum-traffic-dataset.github.io/tumtraf-v2x/" target="_blank" rel="noopener noreferrer">TUMTraf-V2X</a></td><td>V2I cooperative 3D detection and tracking</td><td>mAP<sub>3D</sub>, AMOTA</td></tr>
+              <tr><td>Track 2</td><td><a href="https://mi3-lab.github.io/doScenes_challenge" target="_blank" rel="noopener noreferrer">doScenes</a></td><td>Language-instructed driving and navigation</td><td>ADE / FDE</td></tr>
+              <tr><td>Track 3</td><td><a href="https://mdrive-challenge.github.io/" target="_blank" rel="noopener noreferrer">MDrive</a></td><td>Closed-loop multi-agent cooperative driving</td><td>Driving score</td></tr>
+              <tr><td>Track 4</td><td><a href="https://rise-ai-workshop.github.io/" target="_blank" rel="noopener noreferrer">nuReasoning</a></td><td>Long-tail driving reasoning with VLAs</td><td>Reasoning accuracy</td></tr>
+              <tr><td>Track 5</td><td><a href="https://hetroddata.github.io/HetroD/challenge.html" target="_blank" rel="noopener noreferrer">HetroD</a></td><td>Heterogeneous multi-agent traffic simulation</td><td>Realism score</td></tr>
+              <tr><td>Track 6</td><td>UrbanTwin–LUMPI</td><td>Sim-to-real roadside LiDAR 3D detection</td><td>mAP<sub>3D</sub></td></tr>
+              <tr><td>Track 7</td><td>UrbanTwin–V2X-Real</td><td>Sim-to-real cooperative LiDAR 3D detection</td><td>mAP<sub>3D</sub></td></tr>
+              <tr><td>Track 8</td><td>Mixed Signals</td><td>V2X 3D detection with heterogeneous LiDARs</td><td>mAP<sub>3D</sub></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="paper-layout challenge-details">
+          <article class="paper-card">
+            <span class="track-label"><i class="fas fa-award" aria-hidden="true"></i>Awards</span>
+            <h3>Certificates and prizes</h3>
+            <p>Winners receive challenge awards provided by our sponsors, including a certificate and a monetary prize, and present their solutions in the challenge session. All finalists are invited to the poster sessions.</p>
+            <ul>
+              <li>All datasets are publicly available with dev kits and baselines</li>
+              <li>Prize eligibility requires a technical report and public code</li>
+              <li>Teams must disclose external data and pre-trained models</li>
+              <li>Participants are not required to cite papers beyond the dataset they use</li>
+            </ul>
+          </article>
+          <aside class="dates-card" aria-label="Challenge dates">
+            <span class="track-label"><i class="fas fa-calendar-check" aria-hidden="true"></i>Challenge timeline (2027)</span>
+            <h3>Milestones</h3>
+            <dl class="date-list">
+              <div class="date-row"><dt>Jan. 15</dt><dd>Challenge start: rules and dev kits</dd></div>
+              <div class="date-row"><dt>Feb. 1</dt><dd>Baselines and validation phase</dd></div>
+              <div class="date-row"><dt>Apr. 15</dt><dd>Test phase opens</dd></div>
+              <div class="date-row"><dt>May 15</dt><dd>Submission deadline</dd></div>
+              <div class="date-row"><dt>May 22</dt><dd>Technical reports due</dd></div>
+              <div class="date-row"><dt>Jun. 1</dt><dd>Decisions to participants</dd></div>
+            </dl>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="organizers" class="section-shell is-white">
+      <div class="content-wrap">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">Organizing team</div>
+            <h2 class="section-title">Academia and industry, working together</h2>
+          </div>
+          <p class="section-lead">
+            38 organizers from 14 universities and 10 companies span computer vision, robotics, machine learning, intelligent transportation, and production autonomy.
+          </p>
+        </div>
+
+        <div class="leadership-grid">
+          <a class="leader-card" href="https://walzimmer.github.io/website/" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>WZ</span><img src="static/img/walter_zimmer.jpeg" alt="Portrait of Walter Zimmer" loading="lazy"></div>
+            <div><p class="person-name">Walter Zimmer</p><p class="person-affiliation">UCLA and TUM</p><p class="leader-role">General Chair · Challenge Chair</p></div>
+          </a>
+          <a class="leader-card" href="https://rruisong.github.io/" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>RS</span><img src="https://i1.rgstatic.net/ii/profile.image/1160239365795840-1653634029979_Q512/Rui-Song-47.jpg" alt="Portrait of Rui Song" loading="lazy"></div>
+            <div><p class="person-name">Rui Song</p><p class="person-affiliation">UCLA and Cambridge</p><p class="leader-role">Program and Panel Chair</p></div>
+          </a>
+          <a class="leader-card" href="https://www.rossgreer.com/" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>RG</span><img src="static/img/ross_greer.jpg" alt="Portrait of Ross Greer" loading="lazy"></div>
+            <div><p class="person-name">Ross Greer</p><p class="person-affiliation">UC Merced</p><p class="leader-role">Program and Panel Chair</p></div>
+          </a>
+          <a class="leader-card" href="https://mczhi.github.io/" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>ZH</span><img src="https://mczhi.github.io/images/android-chrome-512x512.png" alt="Portrait of Zhiyu Huang" loading="lazy"></div>
+            <div><p class="person-name">Zhiyu Huang</p><p class="person-affiliation">UCLA</p><p class="leader-role">Program and Panel Chair</p></div>
+          </a>
+          <a class="leader-card" href="https://zewei-zhou.github.io/" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>ZZ</span><img src="static/img/zewei_zhou.jpg" alt="Portrait of Zewei Zhou" loading="lazy"></div>
+            <div><p class="person-name">Zewei Zhou</p><p class="person-affiliation">UCLA</p><p class="leader-role">Area Chair</p></div>
+          </a>
+          <a class="leader-card" href="https://scholar.google.com/citations?user=KmKMahwAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>HY</span><img src="https://mobility-lab.seas.ucla.edu/files/2026/10/haohan.jpg" alt="Portrait of Haohan Yang" loading="lazy"></div>
+            <div><p class="person-name">Haohan Yang</p><p class="person-affiliation">UCLA</p><p class="leader-role">Area Chair</p></div>
+          </a>
+          <a class="leader-card" href="https://www.tianhui-vicky.com/" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>TC</span><img src="static/img/tianhui_cai.jpg" alt="Portrait of Tianhui Cai" loading="lazy"></div>
+            <div><p class="person-name">Tianhui Cai</p><p class="person-affiliation">UCLA</p><p class="leader-role">Speaker Chair</p></div>
+          </a>
+          <a class="leader-card" href="https://sethzhao506.github.io/" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>SZ</span><img src="https://sethzhao506.github.io/assets/img/profile_pic_2022.png" alt="Portrait of Seth Z. Zhao" loading="lazy"></div>
+            <div><p class="person-name">Seth Z. Zhao</p><p class="person-affiliation">UCLA</p><p class="leader-role">Speaker Chair</p></div>
+          </a>
+          <a class="leader-card" href="https://handsomeyun.github.io/" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>YZ</span><img src="https://handsomeyun.github.io/assets/img/prof_pic-480.webp" alt="Portrait of Yun Zhang" loading="lazy"></div>
+            <div><p class="person-name">Yun Zhang</p><p class="person-affiliation">UCLA</p><p class="leader-role">Speaker Chair</p></div>
+          </a>
+          <a class="leader-card" href="https://chuhengwei.com/" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>CW</span><img src="https://scholar.googleusercontent.com/citations?view_op=medium_photo&amp;user=LXwEufAAAAAJ&amp;citpid=1" alt="Portrait of Chuheng Wei" loading="lazy"></div>
+            <div><p class="person-name">Chuheng Wei</p><p class="person-affiliation">UC Riverside</p><p class="leader-role">Area Chair</p></div>
+          </a>
+          <a class="leader-card" href="https://hucaofighting.github.io/" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>HC</span><img src="https://hucaofighting.github.io/images/HC3.png" alt="Portrait of Hu Cao" loading="lazy"></div>
+            <div><p class="person-name">Hu Cao</p><p class="person-affiliation">Southeast University</p><p class="leader-role">Web and Publicity</p></div>
+          </a>
+          <a class="leader-card" href="https://www.linkedin.com/in/max-ronecker-929b72106/" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>MR</span><img src="https://scholar.googleusercontent.com/citations?view_op=view_photo&amp;user=AVQ6vGcAAAAJ&amp;citpid=6" alt="Portrait of Max Ronecker" loading="lazy"></div>
+            <div><p class="person-name">Max Ronecker</p><p class="person-affiliation">NVIDIA</p><p class="leader-role">Industry and Sponsors</p></div>
+          </a>
+          <a class="leader-card" href="https://katieluo88.github.io/" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>KL</span><img src="https://research.nvidia.com/sites/default/files/graduate-fellow-profiles/2023-02/Katie_Luo.photo_.cropped_2.jpg" alt="Portrait of Katie Luo" loading="lazy"></div>
+            <div><p class="person-name">Katie Luo</p><p class="person-affiliation">Waymo</p><p class="leader-role">Industry and Sponsors</p></div>
+          </a>
+          <a class="leader-card" href="https://www.linkedin.com/in/pegadoflavian/" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>FP</span><img src="https://drivex-workshop.github.io/eccv2026/static/images/flavian.jpeg" alt="Portrait of Flavian Pegado" loading="lazy"></div>
+            <div><p class="person-name">Flavian Pegado</p><p class="person-affiliation">Wayve</p><p class="leader-role">Industry and Sponsors</p></div>
+          </a>
+          <a class="leader-card" href="https://energypostdoc.stanford.edu/people/zhe-fu" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>ZF</span><img src="https://energypostdoc.stanford.edu/sites/sepf/files/styles/medium_square/public/media/image/headshot_0.jpeg?h=b161372b&amp;itok=HM3gdik8" alt="Portrait of Zhe Fu" loading="lazy"></div>
+            <div><p class="person-name">Zhe Fu</p><p class="person-affiliation">Stanford University</p><p class="leader-role">Diversity and Students</p></div>
+          </a>
+          <a class="leader-card" href="https://cxy1997.github.io/" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>XC</span><img src="https://scholar.googleusercontent.com/citations?view_op=medium_photo&amp;user=xBv-PMEAAAAJ&amp;citpid=3" alt="Portrait of Xiangyu Chen" loading="lazy"></div>
+            <div><p class="person-name">Xiangyu Chen</p><p class="person-affiliation">NVIDIA</p><p class="leader-role">Industry and Sponsors</p></div>
+          </a>
+          <a class="leader-card" href="https://sites.google.com/site/boyilics/home" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>BL</span><img src="https://scholar.googleusercontent.com/citations?view_op=view_photo&amp;user=0JH6YbEAAAAJ&amp;citpid=5" alt="Portrait of Boyi Li" loading="lazy"></div>
+            <div><p class="person-name">Boyi Li</p><p class="person-affiliation">NVIDIA</p><p class="leader-role">Diversity and Students</p></div>
+          </a>
+          <a class="leader-card" href="https://lwildd.github.io/" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>LW</span><img src="https://www.kth.se/files/avatar/lwild" alt="Portrait of Lena Wild" loading="lazy"></div>
+            <div><p class="person-name">Lena Wild</p><p class="person-affiliation">KTH and TRATON</p><p class="leader-role">Diversity and Students</p></div>
+          </a>
+          <a class="leader-card" href="http://luoping.me/author/haibao-yu/" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>HY</span><img src="https://coop-intelligence.github.io/haibao_yu.jpg" alt="Portrait of Haibao Yu" loading="lazy"></div>
+            <div><p class="person-name">Haibao Yu</p><p class="person-affiliation">Carnegie Mellon University</p><p class="leader-role">Area Chair</p></div>
+          </a>
+          <a class="leader-card" href="https://www.ce.cit.tum.de/air/people/xingcheng-zhou-msc/" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>XZ</span><img src="static/img/xingcheng_zhou.jpeg" alt="Portrait of Xingcheng Zhou" loading="lazy"></div>
+            <div><p class="person-name">Xingcheng Zhou</p><p class="person-affiliation">Technical University of Munich</p><p class="leader-role">Web and Publicity</p></div>
+          </a>
+          <a class="leader-card" href="https://www.ce.cit.tum.de/air/people/jiajie-zhang-msc/" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>JZ</span><img src="static/img/jiajie_zhang.png" alt="Portrait of Jiajie Zhang" loading="lazy"></div>
+            <div><p class="person-name">Jiajie Zhang</p><p class="person-affiliation">Technical University of Munich</p><p class="leader-role">Web and Publicity</p></div>
+          </a>
+          <a class="leader-card" href="https://www.linkedin.com/in/nils-purschke-156835202/" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>NP</span><img src="static/images/nils.png" alt="Portrait of Nils Purschke" loading="lazy"></div>
+            <div><p class="person-name">Nils Purschke</p><p class="person-affiliation">UCLA and TUM</p><p class="leader-role">Web and Publicity</p></div>
+          </a>
+          <a class="leader-card" href="https://scholar.google.com/citations?user=hFraJdwAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>JL</span><img src="https://scholar.googleusercontent.com/citations?view_op=view_photo&amp;user=hFraJdwAAAAJ&amp;citpid=2" alt="Portrait of Jack Langerman" loading="lazy"></div>
+            <div><p class="person-name">Jack Langerman</p><p class="person-affiliation">Zoox</p><p class="leader-role">Industry and Sponsors</p></div>
+          </a>
+          <a class="leader-card" href="https://about.uq.edu.au/experts/54448" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>SP</span><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9fiiufEFH8tuZiG1IQqV80eOYVeUhuvpM4A&amp;s" alt="Portrait of Stephany Berrio Perez" loading="lazy"></div>
+            <div><p class="person-name">Stephany Berrio Perez</p><p class="person-affiliation">University of Queensland</p><p class="leader-role">Diversity and Students</p></div>
+          </a>
+          <a class="leader-card" href="https://www.linkedin.com/in/lars-ullrich" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>LU</span><img src="static/img/lars_ullrich.jpg" alt="Portrait of Lars Ullrich" loading="lazy"></div>
+            <div><p class="person-name">Lars Ullrich</p><p class="person-affiliation">NEURA Robotics</p><p class="leader-role">Area Chair</p></div>
+          </a>
+          <a class="leader-card" href="https://www.rajasekharjosyula.com/" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>RJ</span><img src="static/images/raj.jpeg" alt="Portrait of Rajasekhar Josyula" loading="lazy"></div>
+            <div><p class="person-name">Rajasekhar Josyula</p><p class="person-affiliation">Tesla</p><p class="leader-role">Industry and Sponsors</p></div>
+          </a>
+          <a class="leader-card" href="https://edwardleelpz.github.io/" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>PL</span><img src="static/images/peizheng_li.jpeg" alt="Portrait of Peizheng Li" loading="lazy"></div>
+            <div><p class="person-name">Peizheng Li</p><p class="person-affiliation">University of Tübingen and Mercedes-Benz</p><p class="leader-role">Area Chair</p></div>
+          </a>
+          <a class="leader-card" href="https://www.xiangbogao.com/" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>XG</span><img src="static/images/xiangbo_gao.webp" alt="Portrait of Xiangbo Gao" loading="lazy"></div>
+            <div><p class="person-name">Xiangbo Gao</p><p class="person-affiliation">Texas A&amp;M University</p><p class="leader-role">Area Chair</p></div>
+          </a>
+          <a class="leader-card" href="https://www.linkedin.com/in/senthilyogamani/" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>SY</span><img src="static/images/senthil_yogamani.jpeg" alt="Portrait of Senthil Yogamani" loading="lazy"></div>
+            <div><p class="person-name">Senthil Yogamani</p><p class="person-affiliation">Qualcomm</p><p class="leader-role">Industry and Sponsors</p></div>
+          </a>
+          <a class="leader-card" href="https://olafwysocki.github.io/" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>OW</span><img src="https://olafwysocki.github.io/images/img_5902_edit_small.png" alt="Portrait of Olaf Wysocki" loading="lazy"></div>
+            <div><p class="person-name">Olaf Wysocki</p><p class="person-affiliation">University of Cambridge</p><p class="leader-role">Challenge Chair</p></div>
+          </a>
+          <a class="leader-card" href="https://www.linkedin.com/in/tony-qi-48267632/" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>TQ</span><img src="static/img/xuewei_qi.jpeg" alt="Portrait of Tony (Xuewei) Qi" loading="lazy"></div>
+            <div><p class="person-name">Tony (Xuewei) Qi</p><p class="person-affiliation">Motional</p><p class="leader-role">Advisory Board</p></div>
+          </a>
+          <a class="leader-card" href="https://vztu.github.io/" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>ZT</span><img src="https://vztu.github.io/images/headshot.png" alt="Portrait of Zhengzhong Tu" loading="lazy"></div>
+            <div><p class="person-name">Zhengzhong Tu</p><p class="person-affiliation">Texas A&amp;M University</p><p class="leader-role">Area Chair</p></div>
+          </a>
+          <a class="leader-card" href="https://graz.elsevierpure.com/en/persons/daniel-watzenig" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>DW</span><img src="static/img/daniel_watzenig.jpg" alt="Portrait of Daniel Watzenig" loading="lazy"></div>
+            <div><p class="person-name">Daniel Watzenig</p><p class="person-affiliation">TU Graz</p><p class="leader-role">Advisory Board</p></div>
+          </a>
+          <a class="leader-card" href="https://it-caesar.de/" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>HC</span><img src="static/img/holger_caesar.jpg" alt="Portrait of Holger Caesar" loading="lazy"></div>
+            <div><p class="person-name">Holger Caesar</p><p class="person-affiliation">TU Delft</p><p class="leader-role">Challenge Chair</p></div>
+          </a>
+          <a class="leader-card" href="https://boleizhou.github.io/" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>BZ</span><img src="https://boleizhou.github.io/assets/img/prof_pic2.jpg" alt="Portrait of Bolei Zhou" loading="lazy"></div>
+            <div><p class="person-name">Bolei Zhou</p><p class="person-affiliation">UCLA</p><p class="leader-role">Advisory Board</p></div>
+          </a>
+          <a class="leader-card" href="https://scholar.google.com/citations?user=LkONrRAAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>MT</span><img src="static/img/mohan_trivedi.png" alt="Portrait of Mohan Trivedi" loading="lazy"></div>
+            <div><p class="person-name">Mohan Trivedi</p><p class="person-affiliation">UC San Diego</p><p class="leader-role">Advisory Board</p></div>
+          </a>
+          <a class="leader-card" href="https://www.ce.cit.tum.de/air/people/prof-dr-ing-habil-alois-knoll/" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>AK</span><img src="https://how-to-business.handelsblatt.com/wp-content/uploads/2023/02/knoll.png" alt="Portrait of Alois Knoll" loading="lazy"></div>
+            <div><p class="person-name">Alois Knoll</p><p class="person-affiliation">Technical University of Munich</p><p class="leader-role">Advisory Board</p></div>
+          </a>
+          <a class="leader-card" href="https://mobility-lab.seas.ucla.edu/about/" target="_blank" rel="noopener noreferrer">
+            <div class="person-avatar"><span>JM</span><img src="static/img/jiaqi_ma.jpg" alt="Portrait of Jiaqi Ma" loading="lazy"></div>
+            <div><p class="person-name">Jiaqi Ma</p><p class="person-affiliation">UCLA</p><p class="leader-role">Advisory Board</p></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="editions" class="section-shell is-tinted">
+      <div class="content-wrap">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">Workshop series</div>
+            <h2 class="section-title">Previous DriveX editions</h2>
+          </div>
+          <p class="section-lead">Explore programs, talks, papers, and community resources from previous DriveX workshops.</p>
+        </div>
+
+        <div class="edition-grid">
+          <a class="edition-card" href="https://drivex-workshop.github.io/cvpr2025/" target="_blank" rel="noopener noreferrer">CVPR<br>2025</a>
+          <a class="edition-card" href="https://drivex-workshop.github.io/iccv2025/" target="_blank" rel="noopener noreferrer">ICCV<br>2025</a>
+          <a class="edition-card" href="https://drivex-workshop.github.io/itsc2025/" target="_blank" rel="noopener noreferrer">ITSC<br>2025</a>
+          <a class="edition-card" href="https://drivex-workshop.github.io/cvpr2026/" target="_blank" rel="noopener noreferrer">CVPR<br>2026</a>
+          <a class="edition-card" href="https://drivex-workshop.github.io/iv2026/" target="_blank" rel="noopener noreferrer">IV<br>2026</a>
+          <a class="edition-card" href="https://drivex-workshop.github.io/eccv2026/" target="_blank" rel="noopener noreferrer">ECCV<br>2026</a>
+          <a class="edition-card" href="https://drivex-workshop.github.io/itsc2026/" target="_blank" rel="noopener noreferrer">ITSC<br>2026</a>
+          <a class="edition-card" href="https://drivex-workshop.github.io/icra2027/" target="_blank" rel="noopener noreferrer">ICRA<br>2027</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <strong>DriveX@CVPR 2027</strong>
+        <div>Foundation Models for Autonomous Driving</div>
+        <div>Questions: <a href="mailto:wz@ucla.edu">wz@ucla.edu</a></div>
+      </div>
+      <div class="footer-meta">
+        <strong>IEEE/CVF CVPR 2027</strong>
+        <div>June 20 or June 21, 2027</div>
+        <div>Seattle, USA</div>
+      </div>
+    </div>
+  </footer>
+
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const burger = document.querySelector(".navbar-burger");
+      const menu = document.getElementById("main-menu");
+      const navLinks = Array.from(document.querySelectorAll(".site-nav .navbar-item[href^='#']"));
+
+      if (burger && menu) {
+        burger.addEventListener("click", function () {
+          const expanded = burger.getAttribute("aria-expanded") === "true";
+          burger.setAttribute("aria-expanded", String(!expanded));
+          burger.classList.toggle("is-active");
+          menu.classList.toggle("is-active");
+        });
+
+        navLinks.forEach(function (link) {
+          link.addEventListener("click", function () {
+            burger.setAttribute("aria-expanded", "false");
+            burger.classList.remove("is-active");
+            menu.classList.remove("is-active");
+          });
+        });
+      }
+
+      document.querySelectorAll(".person-avatar img").forEach(function (image) {
+        image.addEventListener("error", function () {
+          image.remove();
+        });
+        if (image.complete && image.naturalWidth === 0) {
+          image.remove();
+        }
+      });
+
+      const sections = navLinks
+        .map(function (link) { return document.querySelector(link.getAttribute("href")); })
+        .filter(Boolean);
+
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            navLinks.forEach(function (link) {
+              link.classList.toggle("is-active", link.getAttribute("href") === "#" + entry.target.id);
+            });
+          });
+        }, { rootMargin: "-32% 0px -60% 0px", threshold: 0 });
+
+        sections.forEach(function (section) { observer.observe(section); });
+      }
+    });
+  </script>
+</body>
+</html>
